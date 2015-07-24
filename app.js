@@ -40,9 +40,32 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 
 
 app.get('/', function(req,res){
-  res.render("users/login");
+  res.render("static_pages/welcome");
 });
 
+
+
+
+
+
+
+
+
+
+//******************* AUTH ROUTES ***********************//
+
+
+// DIRECTED TO THE LOGIN PAGE //
+
+app.get("/login", function (req, res) {
+  var clear = "";
+  res.render("users/login", {err:clear});
+});
+
+app.get("/signup", function (req, res) {
+  var clear = "";
+  res.render("users/signup", {err:clear});
+});
 
 
 
