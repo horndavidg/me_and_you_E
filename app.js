@@ -39,7 +39,9 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 //******************* ENTRY ROUTES ***********************//
 
 
-
+app.get('/', function(req,res){
+  res.render("users/login");
+});
 
 
 
