@@ -19,6 +19,10 @@ var userSchema = new mongoose.Schema({
      
      picture: {
       type: String
+    },
+
+     match: {
+      type: String
     }
   
   });
@@ -88,3 +92,5 @@ userSchema.methods.checkPassword = function(password, callback) {
 };
 
 var User = mongoose.model("User", userSchema);
+
+module.exports = User;

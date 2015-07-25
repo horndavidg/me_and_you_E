@@ -1,0 +1,16 @@
+body {
+
+  background: url(../images/Flowers.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+#indent {
+	margin-left: 2%;
+}
+
+.white {
+	color: white;
+}
+
+
