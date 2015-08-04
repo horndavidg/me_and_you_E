@@ -1,16 +1,42 @@
 body {
 
-  background: url(../images/Flowers.jpg) no-repeat center center fixed; 
+  background: url(../images/Flowers2.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   background-size: cover;
+ 
 }
 
-#indent {
-	margin-left: 2%;
+#indent-log-help {
+	margin-left: 28%;
+	font-size: 20px;
 }
 
 .white {
 	color: white;
 }
 
+.black {
+	color: black;
+}
 
+.redish {
+	color: #420710;
+}
+
+.welcome {
+    background: rgba(66, 7, 16, 0.6);
+	/*background: rgba(200, 54, 54, 0.6);*/
+}
+
+#mainNav {
+  background: #871243;
+  border-radius: 0;
+}
+
+.main.container {
+  margin-top: 3em;
+}
+
+.font {
+	font-family: Georgia, Serif;
+}

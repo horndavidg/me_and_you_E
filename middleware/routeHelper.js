@@ -6,6 +6,9 @@ var routeHelpers = {
       return next();
     }
     else {
+     // currentuser = null;
+     // err = "Please Login to Continue";
+     // res.render('users/login', {err:err, currentuser:currentuser});
      res.redirect('/login');
     }
   },
@@ -30,3 +33,7 @@ var routeHelpers = {
     }
   }
 };
+
+
+
+module.exports = routeHelpers;

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   
-  <title>Me&you</title>
+  <title>Me&You</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -26,11 +26,31 @@
 
 <body>
 
- <ol class="breadcrumb">
-	 <li><a href="/">Home</a></li>
-  	 <li><a href="/login">Log-In</a></li>
-     <li><a href="/signup">Sign Up</a></li>
-     <li><a href="/logout">Log Out</a></li>
-     </ol>
+<nav id="mainNav" class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand"><span class="white">Me & You</span></a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <% if (currentuser == null) { %>
+          <li><a href="/login"><span class="white">Login</span></a></li>
+          <% } %>
+
+        </ul>
+     <ul class="nav navbar-nav navbar-right">
+         <% if (currentuser != null) { %>
+
+<li><p class="navbar-text"><span class="white">Signed in as <a href="/users/<%=currentuser._id%>" class="navbar-link"><%= currentuser.email %></a></span></p></li>
+<li><a href="/logout"><span class="white">Logout</span></a></li>
+
+
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
 
      <div class="container">

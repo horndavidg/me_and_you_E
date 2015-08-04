@@ -1,7 +1,14 @@
 <% include ../partials/header %>
 
 
-<h1 class="text-center">Log-In:</h1>
+<h1 class="text-center white">Log-In:</h1>
+
+ <% if(err) { %>
+  <div class="alert alert-danger" role="alert">
+    <h4><span class="black"><%= err %></span></h4>
+  </div>
+<% } %>
+
 
 <form class="form-horizontal" action="/login" method="POST">
   
@@ -25,7 +32,7 @@
     </div>
   </div>
 </form>
-
+<a href="/signup" id="indent-log-help" class="white">Don't have an account? Sign up here</a>
 
 
 

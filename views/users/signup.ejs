@@ -1,9 +1,11 @@
 <% include ../partials/header %>
 
-<h1 class="text-center">Sign Up:</h1>
+<h1 class="text-center white">Sign Up:</h1>
 
-  <% if(err) { %>
-<h4 id="indent"><font color="red"><%= err%></font></h4>
+ <% if(err) { %>
+  <div class="alert alert-danger" role="alert">
+    <h4><span class="black"><%= err %></span></h4>
+  </div>
 <% } %>
 
 <form class="form-horizontal" method="POST" action="/signup">

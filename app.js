@@ -7,7 +7,7 @@ methodOverride = require('method-override'),
 morgan = require("morgan"),
 favicon = require('serve-favicon');
 loginMiddleware = require("./middleware/loginHelper");
-// routeMiddleware = require("./middleware/routeHelper");
+routeMiddleware = require("./middleware/routeHelper");
 
 require('dotenv').load();
 // Loads .env file in root directory that contains API keys
@@ -34,19 +34,21 @@ app.use(loginMiddleware);
 app.use(session({
   maxAge: 3600000,
   // sets timeout
-  secret: 'dubcitywins',
+  secret: 'citybythebay',
   // how the session decrypts the cookie
-  name: "chocolate chips"
+  name: "chocolate chip yum"
   // (cookie specific)
 }));
 
+// GLOBAL VARIABLES //
+var currentuser;
 
 
 //******************* ENTRY ROUTES ***********************//
 
 
 app.get('/', function(req,res){
-  res.render("static_pages/welcome");
+  res.render("static_pages/welcome", {currentuser:currentuser});
 });
 
 
@@ -63,14 +65,16 @@ app.get('/', function(req,res){
 
 // DIRECTED TO THE LOGIN PAGE //
 
-app.get("/login", function (req, res) {
+app.get("/login", routeMiddleware.preventLoginSignup, function (req, res) {
   var clear = "";
-  res.render("users/login", {err:clear});
+  res.render("users/login", {err:clear, currentuser:currentuser});
 });
 
-app.get("/signup", function (req, res) {
+// DIRECTED TO THE SIGNUP PAGE //
+
+app.get("/signup", routeMiddleware.preventLoginSignup, function (req, res) {
   var clear = "";
-  res.render("users/signup", {err:clear});
+  res.render("users/signup", {err:clear, currentuser:currentuser});
 });
 
 // USER SUBMITTS SIGN UP FORM! // 
@@ -108,26 +112,38 @@ app.post("/login", function (req, res) {
   });
 });
 
-
 // LOGS OUT USER! //
 
 app.get("/logout", function (req, res) {
   req.logout();
+  currentuser = null;
   res.redirect("/");
 });
 
 //******************* RAD ROUTES ***********************//
 
 
-app.get("/rads", function (req, res) {
+app.get('/rads', routeMiddleware.ensureLoggedIn, function (req, res) {
   var clear = "";
-  res.render("rads", {err:clear});
+  db.User.findById(req.session.id, function(err,user){
+          currentuser = user;
+  res.render("rads", {err:clear, currentuser:currentuser});
+  });
 });
 
 
+//******************* USER ROUTES ***********************//
 
 
-
+app.get('/users/:id', routeMiddleware.ensureLoggedIn, function(req,res){
+  db.User.findById(req.params.id, function (err, user) {
+      if(err) {
+        res.render("errors/404");
+      } else {
+        res.render("users/show", {user:user, currentuser:currentuser});
+      } 
+    });
+});
 
 
 
